@@ -1,9 +1,7 @@
 import axios from "axios";
 
-const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
-
 const github = axios.create({
-  baseURL: GITHUB_URL,
+  baseURL: "https://api.github.com",
 });
 
 // Get search results
@@ -11,7 +9,7 @@ export const searchUsers = async (text) => {
   const params = new URLSearchParams({
     q: text,
   });
-  const res = await github.get(`https://api.github.com/search/users?${params}`);
+  const res = await github.get(`/search/users?${params}`);
 
   return res.data.items;
 };
